@@ -1,4 +1,5 @@
 using Library.API;
+using Library.API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,8 @@ var connString = "Data Source=DESKTOP-6N8K1K8\\sqlexpress;Initial Catalog=Librar
 
 builder.Services
     .AddDbContext<AppDbContext>(options => options.UseSqlServer(connString));
+
+builder.Services.AddScoped<IBooksService, BooksService>();
 
 var app = builder.Build();
 
